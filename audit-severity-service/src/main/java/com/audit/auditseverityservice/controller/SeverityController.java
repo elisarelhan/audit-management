@@ -9,10 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.audit.auditseverityservice.entity.AuditRequest;
 import com.audit.auditseverityservice.entity.AuditResponse;
+import com.audit.auditseverityservice.service.AuthTokenService;
 import com.audit.auditseverityservice.service.SeverityServiceImpl;
 
 @RestController
@@ -20,16 +22,23 @@ public class SeverityController {
 
 	@Autowired
 	private SeverityServiceImpl severityService;
+	@Autowired
+	private AuthTokenService tokenService;
+	
+	final String tokenExpired="the token is expired and not valid anymore";
 
 	AuditResponse response = new AuditResponse();
 	
 	private static final Logger logger = LoggerFactory.getLogger(SeverityController.class);
 
 	@PostMapping("/ProjectExecutionStatus")
-	public AuditResponse saveExecutionStatus(@RequestBody AuditRequest request) {
+	public ResponseEntity<?> saveExecutionStatus(@RequestHeader(name = "Authorization", required = true) String token,@RequestBody AuditRequest request) {
 		severityService.save(request);
 		
-		int ques_no = request.getAuditDetails().getAuditQuestions();
+		if(tokenService.checkTokenValidity(token))
+		{
+				
+				int ques_no = request.getAuditDetails().getAuditQuestions();
 		if (ques_no <= 3) {
 			response.setProjectExecutionStatus("GREEN");
 			response.setRemedialActionDuration("No action needed");
@@ -45,7 +54,13 @@ public class SeverityController {
 
 		
 		severityService.saveResponse(response);
-		return response;
+		 return new ResponseEntity<AuditResponse>(response, HttpStatus.OK);
+		 
+		}
+		else 
+		{
+			return new ResponseEntity<String>(tokenExpired, HttpStatus.FORBIDDEN);
+		}
 
 	}
 
