@@ -5,63 +5,35 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
-@Table(name="audit_checklist")
+@Table(name = "audit_checklist")
+//@Getter
+//@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class AuditChecklist {
-	
+
 	@Id
-	@Column(name="question_id")
+	@Column(name = "question_id")
+	@Getter
+	@Setter
 	private int questionId;
-	
-	@Column(name="audit_type")
+
+	@Column(name = "audit_type")
+	@Getter
+	@Setter
 	private String auditType;
-	
+
 	@Column
-	 private String questions;
-
-	public int getQuestionId() {
-		return questionId;
-	}
-
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
-	}
-
-	public String getAuditType() {
-		return auditType;
-	}
-
-	public void setAuditType(String auditType) {
-		this.auditType = auditType;
-	}
-
-	public String getQuestions() {
-		return questions;
-	}
-
-	public void setQuestions(String questions) {
-		this.questions = questions;
-	}
-
-	public AuditChecklist(int questionId, String auditType, String questions) {
-		super();
-		this.questionId = questionId;
-		this.auditType = auditType;
-		this.questions = questions;
-	}
-
-	public AuditChecklist() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "AuditChecklist [questionId=" + questionId + ", auditType=" + auditType + ", questions=" + questions
-				+ "]";
-	}
-	
-	
-	
+	@Getter
+	@Setter
+	private String questions;
 
 }

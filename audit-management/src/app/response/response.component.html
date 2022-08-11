@@ -1,0 +1,17 @@
+<div class="container-fluid mt-4">
+    
+    <div class="mb-2 d-flex justify-content-between align-items-center">
+        <table class="table table-bordered" *ngIf="responseAvailable">
+            <tr class="bg-light">
+                <th scope="col" width="20%">Response Id</th>
+                <th scope="col" width="30%">Project Execution Status</th>
+                <th scope="col" width="50%">Remedial Action Duration</th>
+            </tr>
+            <tr>
+                <td>{{response.responseId}}</td>
+                <td  [style.color]="response.projectExecStatus==='GREEN'? 'green': 'red'">{{response.projectExecStatus}}</td>
+                <td class="font-italic font-weight-bold">{{response.actionDuration}}</td>
+            </tr>
+        </table>
+        </div>
+        </div>

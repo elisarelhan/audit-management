@@ -1,0 +1,100 @@
+<div class="container-sm mt-4">
+  <h1 class="text-center font-style-underline">AUDIT REQUEST</h1>
+    <!-- <div class="row"> -->
+        <div class="col-xs-6 col-sm-5 col-md-8 col-sm-offset-1 col-md-offset-2">
+          <!-- <h5 class="text-warning text-align-center">Please provide all the details!</h5>  -->
+            <form #requestForm="ngForm" (ngSubmit)="onSubmit(requestForm)">
+    <div class="form-group container pt-3 ">
+        <label for="projectname" class="font-weight-bolder"> Project Name</label>
+    <input type="text" id="projectname" class="form-control" style="width:5;"
+    ngModel name  ="projectname" required>
+    </div>
+    <div class ="form-group container pt-3">
+
+    <label for="projectmanagername"> Project Manager Name</label>
+    <input type="text" id="projectmanagername" class="form-control" ngModel name ="projectmanagername" required>
+</div>
+<div class="form-group container pt-3">
+    <label for="appowner">App Owner Name</label>
+    <input type="text" id="appowner" class="form-control" ngModel name  ="appowner" required>
+</div>
+<div class="form-group container pt-3" >
+  <!-- <label for="audittype">Audit Type</label> -->
+ <label>Audit Type</label>
+ <div class="radio" *ngFor="let type of types">
+    <label class="radio-inline" style="font-weight: normal;">
+      <input
+        type="radio"
+        name="audittype"
+        (change)="getChecklist(requestForm.value)"
+        ngModel
+        [value]="type"
+        required>
+      {{ type }}
+    </label>
+    </div>
+  </div> 
+  <br>
+   
+     <!-- <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!requestForm.valid">Submit</button> -->
+
+
+<div class="container ">
+  
+  <table class="table text-center" *ngIf="showTable">
+ 
+    
+    <tr class="bg-light" >
+      <th class="col-sm-8 "></th>
+    <th class="col-sm-2 ">Yes</th>
+    <th class="col-sm-2 ">No</th>
+    </tr>
+   <!-- <tr *ngFor="let question of questions">
+    <td>{{questions[0]}}</td>
+    <td><input type="radio" ngModel value="Yes" id="answer1yes" name="answer1"></td>
+    <td><input type="radio" ngModel value="No" id="answer1no" name="answer1"></td>
+   </tr> --> 
+   <tr >
+      <td scope="row text-align-left">{{questions[0]}}</td>
+      <td><input type="radio" ngModel value="Yes" id="answer1yes" name="answer1" required></td>
+      <td><input type="radio" ngModel value="No" id="answer1no" name="answer1"></td>
+    </tr>
+    <tr>
+      <td  scope="row">{{questions[1]}}</td>
+      <td><input type="radio" ngModel value="Yes" id="answer2yes" name="answer2" required></td>
+      <td><input type="radio" ngModel value="No" id="answer2no" name="answer2"></td>
+    </tr>
+    <tr>
+      <td scope="row">{{questions[2]}}</td>
+      <td><input type="radio" ngModel value="Yes" id="answer3yes" name="answer3" required></td>
+      <td><input type="radio" ngModel value="No" id="answer3no" name="answer3"></td>
+    </tr>
+    <tr>
+      <td scope="row">{{questions[3]}}</td>
+      <td><input type="radio" ngModel value="Yes" id="answer4yes" name="answer4" required></td>
+      <td><input type="radio" ngModel value="No" id="answer4no" name="answer4"></td>
+    </tr>
+    <tr>
+      <td scope="row">{{questions[4]}}</td>
+      <td><input type="radio" ngModel value="Yes" id="answer5yes" name="answer5" required></td>
+      <td><input type="radio" ngModel value="No" id="answer5no" name="answer5"></td>
+    </tr> 
+ 
+  </table>
+  </div>
+  <br>
+  <div class="text-center ">
+      <button
+          class="btn btn-primary "
+          type="submit"
+          [disabled]="!requestForm.valid">Submit</button>
+          </div>
+
+</form>
+</div>
+<!-- </div> -->
+</div>
+

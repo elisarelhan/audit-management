@@ -11,61 +11,38 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
-@Table(name="audit_details")
+@Table(name = "audit_details")
+//@Getter
+//@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class AuditDetails {
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
+	@Getter
+	@Setter
 	private int auditId;
 	@Column
+	@Getter
+	@Setter
 	private String auditType;
 	@Column
 	@CreationTimestamp
+	@Getter
+	@Setter
 	private Date auditDate;
 	@Column
+	@Getter
+	@Setter
 	private int auditQuestions;
-	public int getAuditId() {
-		return auditId;
-	}
-	public void setAuditId(int auditId) {
-		this.auditId = auditId;
-	}
-	public String getAuditType() {
-		return auditType;
-	}
-	public void setAuditType(String auditType) {
-		this.auditType = auditType;
-	}
-	public Date getAuditDate() {
-		return auditDate;
-	}
-	public void setAuditDate(Date auditDate) {
-		this.auditDate = auditDate;
-	}
-	public int getAuditQuestions() {
-		return auditQuestions;
-	}
-	public void setAuditQuestions(int auditQuestions) {
-		this.auditQuestions = auditQuestions;
-	}
-	public AuditDetails(int auditId, String auditType, Date auditDate, int auditQuestions) {
-		super();
-		this.auditId = auditId;
-		this.auditType = auditType;
-		this.auditDate = auditDate;
-		this.auditQuestions = auditQuestions;
-	}
-	public AuditDetails() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	@Override
-	public String toString() {
-		return "AuditDetails [auditId=" + auditId + ", auditType=" + auditType + ", auditDate=" + auditDate
-				+ ", auditQuestions=" + auditQuestions + "]";
-	}
-	
-	
 
 }

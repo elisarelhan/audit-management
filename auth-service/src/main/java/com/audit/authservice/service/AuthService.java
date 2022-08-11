@@ -3,7 +3,6 @@ package com.audit.authservice.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,12 +11,15 @@ import org.springframework.stereotype.Service;
 
 import com.audit.authservice.entity.UserCredentials;
 import com.audit.authservice.entity.UserDTO;
+import com.audit.authservice.exception.UsernamePresentException;
 import com.audit.authservice.repository.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class AuthService implements UserDetailsService {
-	
+
 	@Autowired
 	private UserRepository userDao;
 
@@ -32,12 +34,24 @@ public class AuthService implements UserDetailsService {
 		}
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
 				new ArrayList<>());
+
 	}
-	
+
 	public UserCredentials save(UserDTO user) {
-		UserCredentials newUser = new UserCredentials();
-		newUser.setUsername(user.getUsername());
-		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		return userDao.save(newUser);
+
+		if (userDao.findByUsername(user.getUsername()) == null) {
+			final UserCredentials newUser = new UserCredentials();
+
+			newUser.setUsername(user.getUsername());
+			newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+
+			return userDao.save(newUser);
+		}
+
+		else {
+			throw new UsernamePresentException("Username already exists.");
+		}
+
 	}
+
 }

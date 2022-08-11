@@ -1,0 +1,24 @@
+<div id="app" >
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" routerLink="home">Audit Management</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a  class="nav-link" routerLink="/">Home</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right" *ngIf="!isAuthenticated">
+     
+      <li class="nav-item">
+        <a  class="nav-link" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right" *ngIf="isAuthenticated">
+      
+      <li class="nav-item">
+        <a class="nav-link text-align-right" (click)="onLogout()">LogOut</a>
+      </li>
+    </ul>
+  </nav>
+  </div>

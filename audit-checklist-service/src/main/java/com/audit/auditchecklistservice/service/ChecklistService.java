@@ -1,11 +1,11 @@
 package com.audit.auditchecklistservice.service;
 
-import java.util.List;
+import java.util.Set;
 
-import com.audit.auditchecklistservice.entity.AuditChecklist;
+import com.audit.auditchecklistservice.exception.AuditTypeException;
 
 public interface ChecklistService {
-	
-	List<String> findQuestionList(String auditType);
+
+	Set<String> findQuestionList(String auditType) throws AuditTypeException;
 
 }
