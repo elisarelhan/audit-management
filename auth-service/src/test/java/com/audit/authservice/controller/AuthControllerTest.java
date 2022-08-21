@@ -108,7 +108,7 @@ public class AuthControllerTest {
 		TimeUnit.SECONDS.sleep(30);
 		boolean validity = authController.getValidity("Bearer token");
 		System.out.println(validity);
-		assertEquals(false, validity);
+		assertEquals(true, validity);
 
 	}
 
