@@ -15,7 +15,7 @@ phases:
     commands:
     - echo Build started on `date`
     - echo $IMAGE_NAME
-    - cd jwt-auditmanagement
+    - cd auth-service
     - mvn clean package -Ddockerfile.skip
     - echo Building the Docker image...
     - docker build -t $IMAGE_NAME .
