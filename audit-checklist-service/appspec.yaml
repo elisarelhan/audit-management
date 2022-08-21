@@ -1,0 +1,10 @@
+version: 1.0
+Resources: 
+  -TargetService:
+    Type: AWS::ECS::Service
+    Properties:
+      TaskDefinition:
+      LoadBalancerInfo:
+        ContainerName: "902477_checklistservice"
+        ContainerPort: "8000"
+      PlatformVersion: "Latest"

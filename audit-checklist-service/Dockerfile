@@ -1,4 +1,6 @@
-FROM openjdk:18
-COPY target/audit-checklist-service-0.0.1-SNAPSHOT.jar audit-checklist-service-0.0.1-SNAPSHOT.jar
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
 EXPOSE 8001
-ENTRYPOINT ["java", "-jar", "/audit-checklist-service-0.0.1-SNAPSHOT.jar"]
+ADD target/*.jar app.jar
+ENV JAVA_OPTS=""
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]]
