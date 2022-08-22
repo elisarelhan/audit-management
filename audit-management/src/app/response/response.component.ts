@@ -40,7 +40,7 @@ export class ResponseComponent implements OnInit {
 
     console.log(this.request);
     console.log(headers);
-      this.http.post<any>('http://localhost:8001/audit-severity/ProjectExecutionStatus', this.request, {headers :headers}).subscribe(data => {
+      this.http.post<any>('http://902477-lb1-1148941390.us-west-2.elb.amazonaws.com/api/severity/audit-severity/ProjectExecutionStatus', this.request, {headers :headers}).subscribe(data => {
         this.response = data;
         console.log(this.response);
         this.responseAvailable=true;

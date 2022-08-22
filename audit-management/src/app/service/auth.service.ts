@@ -26,7 +26,7 @@ export class AuthService {
   signup(username: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'http://localhost:8000/register',
+        'http://902477-lb1-1148941390.us-west-2.elb.amazonaws.com/api/auth/register',
         {
           username: username,
           password: password,
@@ -49,7 +49,7 @@ export class AuthService {
   login(username: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'http://localhost:8000/authenticate',
+        'http://902477-lb1-1148941390.us-west-2.elb.amazonaws.com/api/auth/authenticate',
         {
           username: username,
           password: password,

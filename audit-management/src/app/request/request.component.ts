@@ -62,7 +62,7 @@ showTableOnSelection()
   this.request.auditDetails.auditType = value.audittype;
     
     this.http
-    .get<any>('http://localhost:8002/audit-checklist/AuditCheckListQuestions'+'/'+ this.request.auditDetails.auditType,{ 'headers': headers })
+    .get<any>('http://902477-lb1-1148941390.us-west-2.elb.amazonaws.com/api/checklist/audit-checklist/AuditCheckListQuestions'+'/'+ this.request.auditDetails.auditType,{ 'headers': headers })
     .pipe(map(response=>{
       this.questions=response;
     }))
